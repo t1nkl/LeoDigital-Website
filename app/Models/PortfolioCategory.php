@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App;
-use DB;
-use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
@@ -46,34 +44,6 @@ class PortfolioCategory extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
-    public static function getLocalePortfolioCategory($id) {
-        $lang = App::getLocale();
-
-        $portfoliocategory = DB::table('portfoliocategorys')
-            ->where('id', '=', $id)
-            ->where('lang', '=', $lang)
-            ->take(1)
-            ->get();
-
-        $portfoliocategory = reset($portfoliocategory);
-
-        return $portfoliocategory;
-    }
-
-    /**
-     * Возвращает список продуктов по локале
-     * @return mixed
-     */
-    public static function getLocalePortfolioCategorys() {
-        $lang = App::getLocale();
-
-        $portfoliocategorys = DB::table('portfoliocategorys')
-            ->where('lang', '=', $lang)
-            ->get();
-
-        return $portfoliocategorys;
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -122,7 +92,7 @@ class PortfolioCategory extends Model
             return $this->slug;
         }
 
-        return $this->name;
+        return str_slug($this->title);
     }
 
     /*

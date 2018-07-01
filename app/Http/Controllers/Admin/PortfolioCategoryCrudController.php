@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PortfolioCategoryRequest as StoreRequest;
 use App\Http\Requests\PortfolioCategoryRequest as UpdateRequest;
 
@@ -20,7 +19,7 @@ class PortfolioCategoryCrudController extends CrudController
         */
         $this->crud->setModel("App\Models\PortfolioCategory");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/port_category');
-        $this->crud->setEntityNameStrings('category', 'category');
+        $this->crud->setEntityNameStrings('категорию', 'категории');
 
         /*
         |--------------------------------------------------------------------------
@@ -30,18 +29,18 @@ class PortfolioCategoryCrudController extends CrudController
 
         $this->crud->allowAccess('reorder');
         $this->crud->enableReorder('name', 1);
+        $this->crud->orderBy('rgt');
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
                                 'name' => 'name',
-                                'label' => 'Name',
+                                'label' => 'Название',
                             ]);
-        $this->crud->orderBy('rgt');
 
         // ------ CRUD FIELDS
         $this->crud->addField([
                                 'name' => 'name',
-                                'label' => 'Name',
+                                'label' => 'Название',
                             ]);
         $this->crud->addField([
                                 'name' => 'slug',

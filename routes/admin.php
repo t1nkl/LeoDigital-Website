@@ -11,6 +11,10 @@
 |
 */
 
+if (config('backpack.base.setup_dashboard_routes')) {
+    Route::get('dashboard', 'CustomAdminController@dashboard');
+}
+
 CRUD::resource('article', 'ArticleCrudController');
 CRUD::resource('category', 'CategoryCrudController');
 CRUD::resource('tag', 'TagCrudController');

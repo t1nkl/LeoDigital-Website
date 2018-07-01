@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapAjaxRoutes();
+
         $this->mapAdminRoutes();
     }
 
@@ -101,6 +103,20 @@ class RouteServiceProvider extends ServiceProvider
     protected function changeLanguage()
     {
         Route::get('/language/{lang}/', $this->namespace.'\LanguageController@index');
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapAjaxRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/ajax.php'));
     }
 
 }

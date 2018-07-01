@@ -18,4 +18,3 @@ Route::resource('project', 'ProjectController');
 Route::resource('portfolio', 'PortfolioController');
 Route::resource('portfolio_single', 'PortfolioController@test');
 Route::resource('blog', 'BlogController');
-Route::resource('contact', 'ContactController');

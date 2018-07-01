@@ -48,8 +48,10 @@ class PortfolioCrudController extends CrudController {
                                 'name' => 'title',
                                 'label' => 'Название',
                                 'type' => 'text',
+                                'count_down' => 190,
+                                'attributes' => ['maxlength' => 190],
                                 'wrapperAttributes' => [
-                                    'class' => 'form-group col-md-9',
+                                    'class' => 'form-group col-md-12',
                                 ],
                             ]);
         $this->crud->addField([
@@ -62,7 +64,7 @@ class PortfolioCrudController extends CrudController {
                                 'name' => 'description',
                                 'label' => 'Описание',
                                 'type' => 'textarea',
-                                'attributes' => ['rows' => 3],
+                                'attributes' => ['rows' => 4],
                             ]);        
         // $this->crud->addField([
         //                         'name' => 'content',
@@ -90,11 +92,12 @@ class PortfolioCrudController extends CrudController {
                                 'aspect_ratio' => 1.332,
                             ]);
         $this->crud->addField([
-                                'label' => "Другие изображения (слайдер)",
+                                'label' => "Другие изображения (Изображение которые будут использоваться для слайдера)",
                                 'name' => "photos",
                                 'type' => 'dropzone',
                                 'prefix' => 'uploads',
-                                'upload-url' => '/' . config('backpack.base.route_prefix', 'admin') . '/portfolio-dropzone', 
+                                'upload-url' => '/' . config('backpack.base.route_prefix', 'admin') . '/portfolio-dropzone',
+                                'hint' => 'Изображение которые будут использоваться для слайдера', 
                             ]);
         $this->crud->addField([
                                 'label' => 'Категория',

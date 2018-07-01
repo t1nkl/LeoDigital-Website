@@ -46,7 +46,29 @@ class ProjectCrudController extends CrudController {
                                 'name' => 'title',
                                 'label' => 'Название',
                                 'type' => 'text',
+                                'count_down' => 190,
+                                'attributes' => ['maxlength' => 190],
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-9',
+                                ],
                             ]);
+        $this->crud->addField([
+                                'name' => 'date',
+                                'label' => 'Дата',
+                                'type' => 'date',
+                                'value' => date('Y-m-d'),
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-3',
+                                ],
+                            ], 'create');
+        $this->crud->addField([
+                                'name' => 'date',
+                                'label' => 'Дата',
+                                'type' => 'date',
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-3',
+                                ],
+                            ], 'update');
         $this->crud->addField([
                                 'name' => 'slug',
                                 'label' => 'Slug (URL)',
@@ -54,20 +76,10 @@ class ProjectCrudController extends CrudController {
                                 'attributes' => ['readonly' => 'readonly'],
                             ], 'update');
         $this->crud->addField([
-                                'name' => 'date',
-                                'label' => 'Дата',
-                                'type' => 'date',
-                                'value' => date('Y-m-d'),
-                            ], 'create');
-        $this->crud->addField([
-                                'name' => 'date',
-                                'label' => 'Дата',
-                                'type' => 'date',
-                            ], 'update');
-        $this->crud->addField([
                                 'name' => 'description',
                                 'label' => 'Описание',
-                                'type' => 'textarea'
+                                'type' => 'textarea',
+                                'attributes' => ['rows' => 4],
                             ]);
         $this->crud->addField([
                                 'label' => "Кейс в виде картинки (если есть)",
@@ -77,15 +89,17 @@ class ProjectCrudController extends CrudController {
         $this->crud->addField([
                                 'name' => 'content',
                                 'label' => 'Текст',
-                                'type' => 'ckeditor'
+                                'type' => 'ckeditor',
+                                'extra_plugins' => ['oembed', 'widget', 'justify', 'preview', 'indent', 'indentblock', 'lineutils'],
                             ]);
         $this->crud->addField([
-                                'label' => "Картинка (главное изображение)",
+                                'label' => "Картинка",
                                 'name' => "image",
                                 'type' => 'image',
                                 'upload' => true,
                                 'crop' => true,
                                 'aspect_ratio' => 1.496,
+                                'hint' => 'Изображение для главной страницы сайта',
                             ]);
         $this->crud->addField([
                                 'label' => "Баннер",
@@ -94,6 +108,7 @@ class ProjectCrudController extends CrudController {
                                 'upload' => true,
                                 'crop' => true,
                                 'aspect_ratio' => 1.787,
+                                'hint' => 'Изображение которое будет выводится внутри страницы кейса',
                             ]);
         $this->crud->addField([
                                 'label' => "PDF",

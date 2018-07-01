@@ -138,6 +138,8 @@
         });
     </script>
 
+    @yield('style_javascript')
+
     @include('backpack::inc.alerts')
 
     @yield('after_scripts')

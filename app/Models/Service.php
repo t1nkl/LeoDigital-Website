@@ -98,8 +98,7 @@ class Service extends Model
         $attribute_name = "image";
         $disk = "uploads";
         $destination_path = "services/".$this->getSlugOrTitleAttribute();
-        $image_width = 700;
-        $image_height = 311;
+        $image_width = 800;
 
         if ($value==null) {
             // delete the image from disk
@@ -113,7 +112,7 @@ class Service extends Model
         if (starts_with($value, 'data:image'))
         {
             // 0. Make the image
-            $image = \Image::make($value)->resize($image_width, $image_height, function ($constraint) {
+            $image = \Image::make($value)->resize($image_width, NULL, function ($constraint) {
                 $constraint->aspectRatio();
             });
             // 1. Generate a filename.

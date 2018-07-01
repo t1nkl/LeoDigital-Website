@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="{{ $locale }}" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="{{ $locale }}" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="{{ $locale }}" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 9 ]><html class="shim" lang="{{ $locale }}" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="{{ $locale }}" prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://ogp.me/ns#" > <!--<![endif]-->
+<html lang="{{ $locale }}" prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://ogp.me/ns#" >
 <head>
 	<meta name=“google-site-verification” content=“QbOQ8oTSzmbRDcVYuTo9yZSqFnRNMRGBHjomheyhKgU” />
 	<meta name=“p:domain_verify” content=“681d807f64994ba6beb81890b7a5c865"/>
@@ -14,24 +10,23 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 	<meta name="author" content="Kyrylo" />
 	<meta name="copyright" content="Handcrafted by Kyrylo Kovalenko" />
-	<!--[if ie]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<title>@yield('title')</title>
 	<meta name="description" content="@yield('description')">
 	<meta name="keywords" content="@yield('keywords')">
 	<!-- /*===== custom Open Graph =====*/ -->
 	@yield('open_graph')
-	<meta name="csrf-token" content="{{ csrf_token() }}"/>
-	<link rel='stylesheet' type='text/css' href='/css/styles.css'/>
-	<link rel='stylesheet' type='text/css' href='/css/layouts.css'/>
-	<link rel='stylesheet' type='text/css' href='/css/responsive-leyouts.css'/>
-	<link rel="stylesheet" type="text/css" href="/css/responsive-tabs.css">
-	<link rel="stylesheet" type="text/css" href="/css/et-line-font.css">
+	<link rel='stylesheet' type='text/css' href="{{ asset('css/styles.css') }}"/>
+	<link rel='stylesheet' type='text/css' href="{{ asset('css/layouts.css') }}"/>
+	<link rel='stylesheet' type='text/css' href="{{ asset('css/responsive-leyouts.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/responsive-tabs.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/et-line-font.css') }}">
 	<!-- <link rel="stylesheet" type="text/css" href="{{ elixir('css/main.css') }}"> -->
-	<link rel="stylesheet" type="text/css" href="/css/perspectiveRules.css"/>
-	<link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css"/>
-	<link rel='stylesheet' type='text/css' href='/fonts/worksans-family.css'/>
-	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.2'/>
-	<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/perspectiveRules.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('fancybox/jquery.fancybox.css') }}"/>
+	<link rel='stylesheet' type='text/css' href="{{ asset('fonts/worksans-family.css') }}"/>
+	<link rel='stylesheet' type='text/css' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.2"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('slick/slick.css') }}"/>
 	<!-- /*===== custom css =====*/ -->
 	@yield('style_css')
 
@@ -52,6 +47,20 @@
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMX9BPP"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
+
+	<div id="preloader">
+	    <div class="sk-cube-grid" id="sk-cube-grid">
+	        <div class="sk-cube sk-cube1"></div>
+	        <div class="sk-cube sk-cube2"></div>
+	        <div class="sk-cube sk-cube3"></div>
+	        <div class="sk-cube sk-cube4"></div>
+	        <div class="sk-cube sk-cube5"></div>
+	        <div class="sk-cube sk-cube6"></div>
+	        <div class="sk-cube sk-cube7"></div>
+	        <div class="sk-cube sk-cube8"></div>
+	        <div class="sk-cube sk-cube9"></div>
+	    </div>
+	</div>
 	
 	<!-- /*===== include header =====*/ -->
 	@include('includes.header')
@@ -60,8 +69,8 @@
 	<!-- /*===== include footer =====*/ -->
 	@include('includes.footer')
 
-	<script type='text/javascript' src='/js/jquery-1.11.3.js'></script>
-	<script type='text/javascript' src='/js/jquery-migrate.min.js'></script><!-- 
+	<script type='text/javascript' src="{{ asset('js/jquery-1.11.3.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('js/jquery-migrate.min.js') }}"></script><!-- 
 	<script type="text/javascript" src="/js/jquery.logosDistort.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.particleground.min.js"></script>
 	<script type='text/javascript' src="/js/jquery.parallax.js"></script>
@@ -69,11 +78,11 @@
 	<script type='text/javascript' src='/js/scripts.js'></script>
 	<script type="text/javascript" src="/js/responsive-tabs.min.js"></script> -->
 	<script type="text/javascript" src="{{ elixir('js/main.js') }}"></script>
-	<script type="text/javascript" src='/js/typed.js'></script>
-	<script type="text/javascript" src='/js/customs.scripts.js'></script>
-	<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript" src="/slick/slick.min.js"></script>
-	<script type='text/javascript' src="/js/jquery.lazyload.js"></script>
+	<script type="text/javascript" src="{{ asset('js/typed.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/customs.scripts.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('fancybox/jquery.fancybox.pack.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('slick/slick.min.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('js/jquery.lazyload.js') }}"></script>
 	<!-- /*===== custom javascript =====*/ -->
 	@yield('style_javascript')
 	<script type="text/javascript">

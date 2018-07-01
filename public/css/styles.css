@@ -2102,7 +2102,7 @@ margin-bottom: 1em; // padding:0
 
 @media (min-width:768px) {
 	.page-section {
-		max-width: 100%;
+		max-width: 1320px;
 		padding-top: 60px
 	}
 	.page-section--offset {

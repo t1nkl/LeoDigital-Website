@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ArticleRequest as StoreRequest;
 use App\Http\Requests\ArticleRequest as UpdateRequest;
 
@@ -20,7 +19,7 @@ class ArticleCrudController extends CrudController
         */
         $this->crud->setModel("App\Models\Article");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/article');
-        $this->crud->setEntityNameStrings('статья', 'статьи');
+        $this->crud->setEntityNameStrings('статью', 'статьи');
 
         /*
         |--------------------------------------------------------------------------
@@ -30,96 +29,133 @@ class ArticleCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                            ]);
-        $this->crud->addColumn([
-                                'name' => 'status',
-                                'label' => 'Status',
-                            ]);
-        $this->crud->addColumn([
                                 'name' => 'title',
-                                'label' => 'Title',
+                                'label' => 'Название',
                             ]);
         $this->crud->addColumn([
-                                'name' => 'featured',
-                                'label' => 'Featured',
-                                'type' => 'check',
-                            ]);
-        $this->crud->addColumn([
-                                'label' => 'Category',
+                                'label' => 'Категория',
                                 'type' => 'select',
                                 'name' => 'category_id',
                                 'entity' => 'category',
                                 'attribute' => 'name',
                                 'model' => "App\Models\Category",
                             ]);
+        $this->crud->addColumn([
+                                'name' => 'date',
+                                'label' => 'Дата',
+                                'type' => 'date',
+                            ]);
+        $this->crud->addColumn([
+                                'name' => 'status',
+                                'label' => 'Статус',
+                            ]);
 
         // ------ CRUD FIELDS
-        $this->crud->addField([    // TEXT
+        $this->crud->addField([
                                 'name' => 'title',
-                                'label' => 'Title',
+                                'label' => 'Название',
                                 'type' => 'text',
-                                'placeholder' => 'Your title here',
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-9',
+                                ],
+                                'tab' => 'Контент'
                             ]);
+        $this->crud->addField([
+                                'name' => 'date',
+                                'label' => 'Дата',
+                                'type' => 'date',
+                                'value' => date('Y-m-d'),
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-3',
+                                ],
+                                'tab' => 'Контент'
+                            ], 'create');
+        $this->crud->addField([
+                                'name' => 'date',
+                                'label' => 'Дата',
+                                'type' => 'date',
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-3',
+                                ],
+                                'tab' => 'Контент'
+                            ], 'update');
         $this->crud->addField([
                                 'name' => 'slug',
                                 'label' => 'Slug (URL)',
                                 'type' => 'text',
-                                'hint' => 'Будет автоматически сгенерирован из вашего названия, если он оставлен пустым.',
-                                // 'disabled' => 'disabled'
-                            ]);
-
-        $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                                'value' => date('Y-m-d'),
-                            ], 'create');
-        $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
+                                'attributes' => ['readonly' => 'readonly'],
+                                'tab' => 'Контент'
                             ], 'update');
-
-        $this->crud->addField([    // WYSIWYG
+        $this->crud->addField([
+                                'name' => 'description',
+                                'label' => 'Описание',
+                                'type' => 'textarea',
+                                'attributes' => ['rows' => 4],
+                                'tab' => 'Контент'
+                            ]);
+        $this->crud->addField([
                                 'name' => 'content',
-                                'label' => 'Content',
+                                'label' => 'Контент',
                                 'type' => 'ckeditor',
-                                'placeholder' => 'Your textarea text here',
+                                'tab' => 'Контент'
                             ]);
-        $this->crud->addField([    // Image
-                                'name' => 'image',
-                                'label' => 'Image',
-                                'type' => 'browse',
-                            ]);
-        $this->crud->addField([    // SELECT
-                                'label' => 'Category',
+        $this->crud->addField([
+                                'label' => 'Категория',
                                 'type' => 'select2',
                                 'name' => 'category_id',
                                 'entity' => 'category',
                                 'attribute' => 'name',
                                 'model' => "App\Models\Category",
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-4',
+                                ],
+                                'tab' => 'Контент'
                             ]);
-        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-                                'label' => 'Tags',
+        $this->crud->addField([
+                                'label' => 'Теги',
                                 'type' => 'select2_multiple',
-                                'name' => 'tags', // the method that defines the relationship in your Model
-                                'entity' => 'tags', // the method that defines the relationship in your Model
-                                'attribute' => 'name', // foreign key attribute that is shown to user
-                                'model' => "App\Models\Tag", // foreign key model
-                                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+                                'name' => 'tags',
+                                'entity' => 'tags',
+                                'attribute' => 'name',
+                                'model' => "App\Models\Tag",
+                                'pivot' => true,
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-4',
+                                ],
+                                'tab' => 'Контент'
                             ]);
-        $this->crud->addField([    // ENUM
+        $this->crud->addField([
                                 'name' => 'status',
-                                'label' => 'Status',
+                                'label' => 'Статус',
                                 'type' => 'enum',
+                                'wrapperAttributes' => [
+                                    'class' => 'form-group col-md-4',
+                                ],
+                                'tab' => 'Контент'
                             ]);
-        $this->crud->addField([    // CHECKBOX
-                                'name' => 'featured',
-                                'label' => 'Featured item',
-                                'type' => 'checkbox',
+        $this->crud->addField([
+                                'name' => 'image',
+                                'label' => 'Изображение',
+                                'type' => 'text',
+                                'tab' => 'Изображение'
+                            ]);
+        $this->crud->addField([
+                                'name' => 'photos',
+                                'label' => 'Изображениея',
+                                'type' => 'textarea',
+                                'tab' => 'Изображение'
+                            ]);
+        $this->crud->addField([
+                                'name' => 'video',
+                                'label' => 'Видео',
+                                'type' => 'text',
+                                'tab' => 'Видео'
+                            ]);
+        $this->crud->addField([
+                                'name' => 'audio',
+                                'label' => 'Аудио',
+                                'type' => 'text',
+                                'tab' => 'Аудио'
                             ]);
 
         $this->crud->enableAjaxTable();

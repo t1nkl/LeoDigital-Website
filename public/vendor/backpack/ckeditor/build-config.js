@@ -15,7 +15,7 @@
 
 var CKBUILDER_CONFIG = {
 	skin: 'moono',
-	preset: 'standard',
+	preset: 'full',
 	ignore: [
 		'dev',
 		'.gitignore',

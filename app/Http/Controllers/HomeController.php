@@ -25,8 +25,11 @@ class HomeController extends Controller
      */
     public function index( Request $request ) 
     {
-        VisitorId::addVisitorId(session()->getId());
-
+        if(Identify::browser()->getName() && Identify::os()->getName()) {
+            VisitorId::addVisitorId(session()->getId(), Identify::browser()->getName(), Identify::os()->getName());
+        } else {
+            VisitorId::addVisitorId(session()->getId(), null);
+        }
         VisitorIp::addVisitorIp($request->ip());
 
         $clients = Client::orderBy("rgt")->get();

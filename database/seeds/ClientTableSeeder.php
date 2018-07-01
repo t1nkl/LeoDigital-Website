@@ -42,5 +42,35 @@ class ClientTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
+        DB::table('clients')->insert([
+            'title' => 'Тестовое название 6',
+            'image' => 'http://via.placeholder.com/300x200',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        DB::table('clients')->insert([
+            'title' => 'Тестовое название 7',
+            'image' => 'http://via.placeholder.com/300x200',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        DB::table('clients')->insert([
+            'title' => 'Тестовое название 8',
+            'image' => 'http://via.placeholder.com/300x200',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        DB::table('clients')->insert([
+            'title' => 'Тестовое название 9',
+            'image' => 'http://via.placeholder.com/300x200',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        DB::table('clients')->insert([
+            'title' => 'Тестовое название 10',
+            'image' => 'http://via.placeholder.com/300x200',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
     }
 }

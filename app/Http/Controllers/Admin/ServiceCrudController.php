@@ -46,6 +46,8 @@ class ServiceCrudController extends CrudController {
                                 'name' => 'title',
                                 'label' => 'Название',
                                 'type' => 'text',
+                                'count_down' => 190,
+                                'attributes' => ['maxlength' => 190],
                                 'wrapperAttributes' => [
                                     'class' => 'form-group col-md-8',
                                 ],

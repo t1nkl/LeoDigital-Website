@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\CrudTrait;
+use App\Traits\CustomCrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Backpack\CRUD\ModelTraits\SpatieTranslatable\HasTranslations;
 
 class Article extends Model
 {
-    use CrudTrait;
+    use CustomCrudTrait;
     use Sluggable, SluggableScopeHelpers;
+    use HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +27,6 @@ class Article extends Model
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [
-        'featured'  => 'boolean',
         'date'      => 'date',
     ];
 
