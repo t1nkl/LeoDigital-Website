@@ -10,14 +10,4 @@ This website made by me:) I used:
   - Intervention
   - Spatie
 
-# This site under development right now! On hosting based old version on laravel 5.3 and some bugs! New site will be done on 09/2017
-
 ### Link  -  [LeoDigital](https://leodigital.com.ua)
-
-
-### Todos
-
- - Blog
- - Front-end fixes
- - Shift statistics and analitics
- - Minor fixes
